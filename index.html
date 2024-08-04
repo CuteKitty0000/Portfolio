@@ -64,7 +64,13 @@
             <nav class="site-navigation position-relative" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="#portfolio-section" class="nav-link">Gallery</a></li>
+
+                <!--
+
                 <li><a href="#blog-section" class="nav-link">Blog</a></li>
+                
+                -->
+
                 <li><a href="#contact-section" class="nav-link">Contact</a></li>
               </ul>
             </nav>
@@ -211,9 +217,7 @@
         </div>
       </div>
     </div>
-    
-
-
+ 
     <section class="site-section block__62272" id="portfolio-section">
       <div class="container">
         <div class="row mb-5">
@@ -262,7 +266,103 @@
         </div>
       </div>
     </section>
+    
+    <!-- Contact Section -->
+<div class="site-section contact-section" id="contact-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-4 position-relative">
+        <h2 class="section-title text-center mb-5">Contact Me</h2>
+      </div>
+      <div class="col-lg-8 mx-auto">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" rows="6" placeholder="Your Message" required></textarea>
+          </div>
+          <div class="text-right">
+            <button type="submit" class="btn btn-send">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    var name = encodeURIComponent(document.getElementById('name').value);
+    var email = encodeURIComponent(document.getElementById('email').value);
+    var message = document.getElementById('message').value;
+    
+    // Split message into words and check the count
+    var wordCount = message.split(/\s+/).length;
+    if (wordCount > 3000) {
+      alert('Message cannot exceed 3000 words.');
+      return;
+    }
+    
+    message = encodeURIComponent(message);
+    var subject = 'Contact Form Submission';
+    var body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage:%0D%0A${message}`;
+    
+    var gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=your-727723eucy034@skcet.ac.in&su=${encodeURIComponent(subject)}&body=${body}`;
+    
+    // Open the Gmail URL in a new tab
+    window.open(gmailURL, '_blank');
+  });
+</script>
+
+<style>
+  .contact-section {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+  }
+  .contact-section .section-title {
+    font-size: 24px;
+    color: #343a40;
+  }
+  .contact-section .form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+    background-color: #fff;
+    color: #000 !important;
+    resize: none; /* Prevents resizing */
+    overflow: auto; /* Adds scroll bar if content overflows */
+  }
+  .contact-section .form-control::placeholder {
+    color: #6c757d;
+  }
+  .contact-section .btn-send {
+    background-color: #ff6600;
+    border-color: #ff6600;
+    color: #fff;
+  }
+  .contact-section .btn-send:hover {
+    background-color: #cc5200;
+    border-color: #cc5200;
+  }
+  .contact-section label {
+    color: #000;
+  }
+  .contact-section .text-right {
+    text-align: right;
+  }
+</style>
+
+    
     <footer class="site-section bg-light footer">
       <div class="container">
         <div class="row mb-5">
@@ -288,7 +388,7 @@
         </div>
       </div>
     </footer>
-    
+
     <style>
       .footer {
         padding: 40px 0;
